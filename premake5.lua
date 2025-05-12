@@ -14,6 +14,9 @@ project "Aurora"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "arpch.h"
+	pchsource "Aurora/src/arpch.cpp"
+
 	files 
 	{ 
 		"%{prj.name}/src/**.h", 

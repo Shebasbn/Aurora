@@ -2,9 +2,6 @@
 
 #include "../Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Aurora
 {
 	// Note: Events are currently blocking, meaning when an event occurs it immedeatly gets
