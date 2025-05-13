@@ -4,6 +4,9 @@
 #include "Aurora/Events/ApplicationEvent.h"
 #include "Aurora/Events/KeyEvent.h"
 #include "Aurora/Events/MouseEvent.h"
+#include "glad/glad.h"
+
+
 
 namespace Aurora
 {
@@ -50,6 +53,8 @@ namespace Aurora
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
 		AR_CORE_ASSERT(m_Window, "Could not create GLFW Window!");
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		AR_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

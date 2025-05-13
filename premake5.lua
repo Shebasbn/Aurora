@@ -9,8 +9,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Aurora/vendor/GLFW/include"
+IncludeDir["Glad"] = "Aurora/vendor/Glad/include"
 
 include "Aurora/vendor/GLFW"
+include "Aurora/vendor/Glad"
 
 project "Aurora"
 	location "Aurora"
@@ -33,12 +35,14 @@ project "Aurora"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}", 
+		"%{IncludeDir.Glad}"
 	}
 
 	links 
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib",
 		"dwmapi.lib"
 	}
@@ -52,7 +56,8 @@ project "Aurora"
 		defines 
 		{
 			"AR_PLATFORM_WINDOWS",
-			"AR_BUILD_DLL"
+			"AR_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
