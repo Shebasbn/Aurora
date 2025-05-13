@@ -61,10 +61,10 @@ namespace Aurora
 		int m_Button;
 	};
 
-	class AURORA_API MouseButtonPressedEVent : public MouseButtonEvent
+	class AURORA_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonPressedEVent(int button) :
+		MouseButtonPressedEvent(int button) :
 			MouseButtonEvent(button) {}
 
 		std::string ToString() const override
@@ -77,10 +77,10 @@ namespace Aurora
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class AURORA_API MouseButtonReleasedEVent : public MouseButtonEvent
+	class AURORA_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonReleasedEVent(int button) :
+		MouseButtonReleasedEvent(int button) :
 			MouseButtonEvent(button) {}
 
 		std::string ToString() const override

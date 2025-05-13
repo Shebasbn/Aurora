@@ -1,6 +1,4 @@
 #include "arpch.h"
-#include "Log.h"
-#include <thread>
 
 namespace Aurora
 {	
