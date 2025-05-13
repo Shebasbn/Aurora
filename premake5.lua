@@ -62,18 +62,21 @@ project "Aurora"
 		
 	filter "configurations:Debug"
 		defines {"AR_DEBUG", "AR_ENABLE_ASSERTS"}
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "AR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "AR_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter { "system:windows", "configurations:Release"}
-		buildoptions "/MT"
+		
 
 project "Sandbox"
 	location "Sandbox"
@@ -112,15 +115,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "AR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "AR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "AR_DIST"
-		optimize "On"
-
-	filter { "system:windows", "configurations:Release"}
 		buildoptions "/MD"
+		optimize "On"

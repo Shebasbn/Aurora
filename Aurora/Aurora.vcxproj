@@ -84,7 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD /MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -111,7 +111,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 /MD /MT %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -163,6 +163,8 @@
     <ClInclude Include="src\Aurora\Events\Event.h" />
     <ClInclude Include="src\Aurora\Events\KeyEvent.h" />
     <ClInclude Include="src\Aurora\Events\MouseEvent.h" />
+    <ClInclude Include="src\Aurora\Layer.h" />
+    <ClInclude Include="src\Aurora\LayerStack.h" />
     <ClInclude Include="src\Aurora\Log.h" />
     <ClInclude Include="src\Aurora\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -170,6 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aurora\Application.cpp" />
+    <ClCompile Include="src\Aurora\Layer.cpp" />
+    <ClCompile Include="src\Aurora\LayerStack.cpp" />
     <ClCompile Include="src\Aurora\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\arpch.cpp">

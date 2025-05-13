@@ -37,6 +37,12 @@
     <ClInclude Include="src\Aurora\Events\MouseEvent.h">
       <Filter>Aurora\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Aurora\Layer.h">
+      <Filter>Aurora</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aurora\LayerStack.h">
+      <Filter>Aurora</Filter>
+    </ClInclude>
     <ClInclude Include="src\Aurora\Log.h">
       <Filter>Aurora</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aurora\Application.cpp">
+      <Filter>Aurora</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aurora\Layer.cpp">
+      <Filter>Aurora</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aurora\LayerStack.cpp">
       <Filter>Aurora</Filter>
     </ClCompile>
     <ClCompile Include="src\Aurora\Log.cpp">
