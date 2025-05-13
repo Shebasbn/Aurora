@@ -6,8 +6,13 @@
 namespace Aurora
 {
 	#define BIND_EVENT_F(x) std::bind(&Application::x, this, std::placeholders::_1)
+	
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		AR_CORE_ASSERT(!s_Instance, "Application allready exists!");
+		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_F(OnEvent));
 	}
@@ -19,11 +24,13 @@ namespace Aurora
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
