@@ -1,5 +1,5 @@
 #pragma once
-
+#include "arpch.h"
 #include "../Core.h"
 
 namespace Aurora

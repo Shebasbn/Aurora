@@ -61,7 +61,7 @@ project "Aurora"
 		}
 		
 	filter "configurations:Debug"
-		defines "AR_DEBUG"
+		defines {"AR_DEBUG", "AR_ENABLE_ASSERTS"}
 		symbols "On"
 		
 	filter "configurations:Release"

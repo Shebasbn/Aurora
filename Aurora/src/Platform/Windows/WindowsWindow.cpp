@@ -27,12 +27,13 @@ namespace Aurora
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
+		AR_CORE_ASSERT(Aurora::Log::GetCoreLogger, "Core logger not initialized!");
 		AR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{
 			// TODO: glfwTerminate on system shutdown
-			int succes = glfwInit();
+			int success = glfwInit();
 			AR_CORE_ASSERT(success, "Could not initialize GLFW!");
 
 			s_GLFWInitialized = true;
@@ -42,6 +43,9 @@ namespace Aurora
 		AR_CORE_ASSERT(m_Window, "Could not create GLFW Window!");
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
+		glfwSetErrorCallback([](int error, const char* description) {
+			std::cerr << "GLFW Error (" << error << "): " << description << std::endl;
+			});
 		SetVSync(true);
 
 	}
