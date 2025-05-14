@@ -80,7 +80,6 @@ namespace Aurora
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-				
 				switch (action)
 				{
 					case GLFW_PRESS:
@@ -104,6 +103,14 @@ namespace Aurora
 				}
 			}
 		);
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keyCode) 
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypedEvent event(keyCode);
+			data.EventCallback(event);
+		});
+
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) 
 		{

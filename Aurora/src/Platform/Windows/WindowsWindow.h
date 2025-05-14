@@ -29,11 +29,10 @@ namespace Aurora {
 
 		struct WindowData
 		{
+			EventCallbackFn EventCallback;
 			std::string Title;
 			unsigned int Width, Height;
 			bool VSync;
-
-			EventCallbackFn EventCallback;
 		};
 
 		WindowData m_Data;

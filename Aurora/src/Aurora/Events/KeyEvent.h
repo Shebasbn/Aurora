@@ -41,8 +41,8 @@ namespace Aurora
 	class AURORA_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyReleasedEvent(int KeyCode) :
-			KeyEvent(KeyCode) {}
+		KeyReleasedEvent(int keyCode) :
+			KeyEvent(keyCode) {}
 
 		std::string ToString() const override
 		{
@@ -52,5 +52,23 @@ namespace Aurora
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
+	};
+
+	class AURORA_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keyCode) :
+			KeyEvent(keyCode) 
+		{
+		}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
 	};
 }
