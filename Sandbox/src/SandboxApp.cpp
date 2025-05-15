@@ -11,12 +11,17 @@ public:
 
 	void OnUpdate() override
 	{
-		AR_INFO("ExampleLayer::Update");
+		//AR_INFO("ExampleLayer::Update");
+
+		if (Aurora::Input::IsKeyPressed(AR_KEY_TAB))
+		{
+			AR_INFO("Tab key is pressed!");
+		}
 	}
 
 	void OnEvent(Aurora::Event& e) override
 	{
-		AR_TRACE("{0}", e.ToString());
+		//AR_TRACE("{0}", e.ToString());
 	}
 };
 

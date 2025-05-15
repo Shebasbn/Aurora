@@ -197,7 +197,7 @@ namespace Aurora
         dispatcher.Dispatch<KeyReleasedEvent>(AR_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
         dispatcher.Dispatch<WindowResizeEvent>(AR_BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
 
-        AR_INFO("{0}", e.ToString());
+        //AR_INFO("{0}", e.ToString());
     }
 
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)

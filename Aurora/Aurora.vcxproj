@@ -165,9 +165,11 @@
     <ClInclude Include="src\Aurora\Events\MouseEvent.h" />
     <ClInclude Include="src\Aurora\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Aurora\Input.h" />
+    <ClInclude Include="src\Aurora\KeyCodes.h" />
     <ClInclude Include="src\Aurora\Layer.h" />
     <ClInclude Include="src\Aurora\LayerStack.h" />
     <ClInclude Include="src\Aurora\Log.h" />
+    <ClInclude Include="src\Aurora\MouseButtonCodes.h" />
     <ClInclude Include="src\Aurora\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />

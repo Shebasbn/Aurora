@@ -46,6 +46,9 @@
     <ClInclude Include="src\Aurora\ImGui\ImGuiLayer.h">
       <Filter>Aurora\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Aurora\Input.h">
+      <Filter>Aurora</Filter>
+    </ClInclude>
     <ClInclude Include="src\Aurora\Layer.h">
       <Filter>Aurora</Filter>
     </ClInclude>
@@ -61,12 +64,15 @@
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\arpch.h" />
-    <ClInclude Include="src\Aurora\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Aurora\KeyCodes.h" />
+    <ClInclude Include="src\Aurora\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aurora\Application.cpp">
@@ -74,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="src\Aurora\ImGui\ImGuiLayer.cpp">
       <Filter>Aurora\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aurora\Input.cpp">
+      <Filter>Aurora</Filter>
     </ClCompile>
     <ClCompile Include="src\Aurora\Layer.cpp">
       <Filter>Aurora</Filter>
@@ -87,11 +96,12 @@
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\arpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\Aurora\Input.cpp" />
   </ItemGroup>
 </Project>
