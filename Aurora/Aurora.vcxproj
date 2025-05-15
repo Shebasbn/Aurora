@@ -171,7 +171,6 @@
     <ClInclude Include="src\Aurora\Log.h" />
     <ClInclude Include="src\Aurora\MouseButtonCodes.h" />
     <ClInclude Include="src\Aurora\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\arpch.h" />
@@ -596,12 +595,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Aurora\Application.cpp" />
+    <ClCompile Include="src\Aurora\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Aurora\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Aurora\Input.cpp" />
     <ClCompile Include="src\Aurora\Layer.cpp" />
     <ClCompile Include="src\Aurora\LayerStack.cpp" />
     <ClCompile Include="src\Aurora\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\arpch.cpp">

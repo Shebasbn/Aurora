@@ -108,6 +108,7 @@ project "Sandbox"
 	{
 		"Aurora/vendor/spdlog/include",
 		"Aurora/src",
+		"%{prj.name}/vendor,
 		"%{IncludeDir.glm}"
 	}
 
