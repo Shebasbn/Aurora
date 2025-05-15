@@ -10,9 +10,11 @@
 #include "GLFW/glfw3.h"
 #include <glad/glad.h>
 
+#include "Aurora/Input.h"
+
 namespace Aurora
 {
-    // Temporary
+    // Temporary ---------------------------------------------------------------------------------------------------
     static ImGuiKey ImGui_ImplGlfw_KeyToImGuiKey(int key)
     {
         switch (key)
@@ -126,14 +128,15 @@ namespace Aurora
         }
     }
 
-    /*static void ImGui_ImplGlfw_UpdateKeyModifiers()
+    static void ImGui_ImplGlfw_UpdateKeyModifiers()
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.AddKeyEvent(ImGuiMod_Ctrl, (glfwGetKey((WindowsWindow&)(Application::s_Instance->GetWindow()), GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) || (glfwGetKey(bd->Window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS));
-        io.AddKeyEvent(ImGuiMod_Shift, (glfwGetKey(bd->Window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) || (glfwGetKey(bd->Window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS));
-        io.AddKeyEvent(ImGuiMod_Alt, (glfwGetKey(bd->Window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) || (glfwGetKey(bd->Window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS));
-        io.AddKeyEvent(ImGuiMod_Super, (glfwGetKey(bd->Window, GLFW_KEY_LEFT_SUPER) == GLFW_PRESS) || (glfwGetKey(bd->Window, GLFW_KEY_RIGHT_SUPER) == GLFW_PRESS));
-    }*/
+        io.AddKeyEvent(ImGuiMod_Ctrl, Input::IsKeyPressed(GLFW_KEY_LEFT_CONTROL) || Input::IsKeyPressed(GLFW_KEY_RIGHT_CONTROL));
+        io.AddKeyEvent(ImGuiMod_Shift, Input::IsKeyPressed(GLFW_KEY_LEFT_SHIFT) || Input::IsKeyPressed(GLFW_KEY_RIGHT_SHIFT));
+        io.AddKeyEvent(ImGuiMod_Alt, Input::IsKeyPressed(GLFW_KEY_LEFT_ALT) || Input::IsKeyPressed(GLFW_KEY_RIGHT_ALT));
+        io.AddKeyEvent(ImGuiMod_Super, Input::IsKeyPressed(GLFW_KEY_LEFT_SUPER)|| Input::IsKeyPressed(GLFW_KEY_RIGHT_SUPER));
+    }
+    //-------------------------------------------------------------------------------------------------------------
 
 	ImGuiLayer::ImGuiLayer() 
 		: Layer("ImGuiLayer") 
@@ -199,6 +202,7 @@ namespace Aurora
 
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
     {
+        ImGui_ImplGlfw_UpdateKeyModifiers();
         ImGuiIO& io = ImGui::GetIO();
         if (e.GetMouseButton() >= 0 && e.GetMouseButton() < ImGuiMouseButton_COUNT)
         {
@@ -210,6 +214,7 @@ namespace Aurora
 
     bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e)
     {
+        ImGui_ImplGlfw_UpdateKeyModifiers();
         ImGuiIO& io = ImGui::GetIO();
         if (e.GetMouseButton() >= 0 && e.GetMouseButton() < ImGuiMouseButton_COUNT)
         {
@@ -226,19 +231,21 @@ namespace Aurora
     }
     bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& e)
     {
+        ImGui_ImplGlfw_UpdateKeyModifiers();
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseWheelEvent(e.GetXOffset(), e.GetYOffset());
         return false;
     }
     bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& e)
     {
+        ImGui_ImplGlfw_UpdateKeyModifiers();
         ImGuiIO& io = ImGui::GetIO();
         ImGuiKey imgui_key = ImGui_ImplGlfw_KeyToImGuiKey(e.GetKeyCode());
         io.AddKeyEvent(imgui_key, GLFW_PRESS);
-        io.AddKeyEvent(ImGuiMod_Ctrl, io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL] && GLFW_PRESS);
+        /*io.AddKeyEvent(ImGuiMod_Ctrl, io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL] && GLFW_PRESS);
         io.AddKeyEvent(ImGuiMod_Shift, io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL]);
         io.AddKeyEvent(ImGuiMod_Alt, io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT]);
-        io.AddKeyEvent(ImGuiMod_Super, io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER]);
+        io.AddKeyEvent(ImGuiMod_Super, io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER]);*/
         /*io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
         io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
         io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
@@ -247,13 +254,14 @@ namespace Aurora
     }
     bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& e)
     {
+        ImGui_ImplGlfw_UpdateKeyModifiers();
         ImGuiIO& io = ImGui::GetIO();
         ImGuiKey imgui_key = ImGui_ImplGlfw_KeyToImGuiKey(e.GetKeyCode());
         io.AddKeyEvent(imgui_key, GLFW_RELEASE);
-        io.AddKeyEvent(ImGuiMod_Ctrl, io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL] && GLFW_PRESS);
+        /*io.AddKeyEvent(ImGuiMod_Ctrl, io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL] && GLFW_PRESS);
         io.AddKeyEvent(ImGuiMod_Shift, io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL]);
         io.AddKeyEvent(ImGuiMod_Alt, io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT]);
-        io.AddKeyEvent(ImGuiMod_Super, io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER]);
+        io.AddKeyEvent(ImGuiMod_Super, io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER]);*/
        /* io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
         io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
         io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
@@ -262,6 +270,7 @@ namespace Aurora
     }
     bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
     {
+        ImGui_ImplGlfw_UpdateKeyModifiers();
         ImGuiIO& io = ImGui::GetIO();
         io.AddInputCharacter(e.GetKeyCode());
         return false;

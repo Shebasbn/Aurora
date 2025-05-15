@@ -1,7 +1,8 @@
 #include "arpch.h"
 #include "Application.h"
 #include "glad/glad.h"
-//#include <GLFW/glfw3.h>
+
+#include "Input.h"
 
 namespace Aurora
 {
@@ -55,6 +56,9 @@ namespace Aurora
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
+			AR_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}
