@@ -11,6 +11,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Aurora/vendor/GLFW/include"
 IncludeDir["Glad"] = "Aurora/vendor/Glad/include"
 IncludeDir["Imgui"] = "Aurora/vendor/imgui"
+IncludeDir["glm"] = "Aurora/vendor/glm"
 
 include "Aurora/vendor/GLFW"
 include "Aurora/vendor/Glad"
@@ -30,16 +31,19 @@ project "Aurora"
 	files 
 	{ 
 		"%{prj.name}/src/**.h", 
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs 
 	{
-		"%{prj.name}/src",
+		"%{prj.name}/src",	
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}", 
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.Imgui}"
+		"%{IncludeDir.Imgui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links 
@@ -103,7 +107,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Aurora/vendor/spdlog/include",
-		"Aurora/src"
+		"Aurora/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links
