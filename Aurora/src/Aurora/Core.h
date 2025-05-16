@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef AR_PLATFORM_WINDOWS
-	#ifdef AR_BUILD_DLL
-		#define AURORA_API __declspec(dllexport)
+	#if AR_DYNAMIC_LINK
+		#ifdef AR_BUILD_DLL
+			#define AURORA_API __declspec(dllexport)
+		#else
+			#define AURORA_API __declspec(dllimport)
+		#endif
 	#else
-		#define AURORA_API __declspec(dllimport)
+		#define AURORA_API 
 	#endif
 #else
 	#error Aurora only supports Windows!

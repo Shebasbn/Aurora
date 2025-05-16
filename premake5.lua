@@ -19,8 +19,11 @@ include "Aurora/vendor/imgui"
 
 project "Aurora"
 	location "Aurora"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "On"
+
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -34,6 +37,11 @@ project "Aurora"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs 
@@ -56,10 +64,8 @@ project "Aurora"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
-		buildoptions {"/utf-8", "/MD"}
+		buildoptions "/utf-8"
 
 		defines 
 		{
@@ -67,34 +73,32 @@ project "Aurora"
 			"AR_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
-
-		postbuildcommands
-		{
-			("{COPYFILE} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-		}
 		
 	filter "configurations:Debug"
 		defines {"AR_DEBUG", "AR_ENABLE_ASSERTS"}
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		--buildoptions "/MDd"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "AR_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		--buildoptions "/MD"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "AR_DIST"
-		buildoptions "/MD"
-		optimize "On"
-
-	filter { "system:windows", "configurations:Release"}
+		runtime "Release"
+		--buildoptions "/MD"
+		optimize "on"
 		
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -118,8 +122,7 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
+		--staticruntime "On"
 		systemversion "latest"
 		buildoptions "/utf-8"
 
@@ -130,15 +133,18 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "AR_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		--buildoptions "/MDd"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "AR_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		--buildoptions "/MD"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "AR_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		--buildoptions "/MD"
+		optimize "on"
