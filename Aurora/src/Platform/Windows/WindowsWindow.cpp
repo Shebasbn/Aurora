@@ -4,7 +4,8 @@
 #include "Aurora/Events/ApplicationEvent.h"
 #include "Aurora/Events/KeyEvent.h"
 #include "Aurora/Events/MouseEvent.h"
-#include "glad/glad.h"
+
+#include "Platform/OpenGL/OpenGLContext.h"
 
 
 
@@ -41,6 +42,7 @@ namespace Aurora
 		AR_CORE_ASSERT(Aurora::Log::GetCoreLogger(), "Core logger not initialized!");
 		AR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
+
 		if (!s_GLFWInitialized)
 		{
 			// TODO: glfwTerminate on system shutdown
@@ -51,10 +53,10 @@ namespace Aurora
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
-		AR_CORE_ASSERT(m_Window, "Could not create GLFW Window!");
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		AR_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -157,7 +159,7 @@ namespace Aurora
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
