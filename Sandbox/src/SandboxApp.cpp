@@ -1,5 +1,6 @@
 #include <Aurora.h>
 
+#include "imgui/imgui.h"
 class ExampleLayer : public Aurora::Layer
 {
 public:
@@ -17,6 +18,13 @@ public:
 		{
 			AR_INFO("Tab key is pressed!");
 		}
+	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World!");
+		ImGui::End();
 	}
 
 	void OnEvent(Aurora::Event& e) override
