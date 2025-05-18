@@ -28,7 +28,7 @@ namespace Aurora
 		AR_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;
 	}
-
+	
 	struct BufferElement
 	{
 		std::string Name;
