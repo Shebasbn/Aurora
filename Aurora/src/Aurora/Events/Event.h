@@ -47,7 +47,7 @@ namespace Aurora
 		{
 			return GetCategoryFlags() & category;
 		}
-
+		friend std::ostream& operator<<(std::ostream& os, const Event& e) { return os << e.ToString(); }
 		bool Handled = false;
 	};
 
@@ -73,6 +73,6 @@ namespace Aurora
 	private:
 		Event& m_Event;
 	};
+	
 
-	inline std::ostream& operator<<(std::ostream& os, const Event& e) { return os << e.ToString(); }
 }
